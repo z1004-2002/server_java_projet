@@ -1,25 +1,27 @@
 package org.abel;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
+import java.sql.*;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        Connection connection = Connexion.connect();
-        try {
-            assert connection != null;
-            Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM region");
-            while (rs.next()){
-                System.out.println("\tid : " +rs.getInt(1));
-                System.out.println("\tNom : " +rs.getString(2));
-                System.out.println("===============================================");
+        DatagramSocket socket = SocketService.createServerSocket(3000);
+        while(true){
+            try{
+                byte []tmp = new byte[2048];
+                DatagramPacket packet = new DatagramPacket(tmp, tmp.length);
+                socket.receive(packet);
+                MonThread thread = new MonThread(socket,packet);
+                thread.start();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            connection.close();
-        }catch (SQLException s){
-            s.printStackTrace();
         }
     }
+
 }
