@@ -1,5 +1,9 @@
 package org.abel;
 
+import org.abel.services.PartiRequest;
+import org.abel.services.RegionRequest;
+import org.abel.services.ServerService;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -41,8 +45,16 @@ public class MonThread extends Thread{
                 throw new RuntimeException(e);
             }
         }
-        else if (request.get("name_request").equals("drop_data_base")) {
-            ServerService.dropDatabase();
+        else if (request.get("name_request").equals("resultat_region")){
+            List<Map<String,Object>> result = RegionRequest.selectVoteByRegion((Integer) request.get("id_region"));
+            byte [] data = ServerService.transformToByte(result);
+            packet.setData(data);
+            packet.setLength(data.length);
+            try {
+                socket.send(packet);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         else if (request.get("name_request").equals("add_region")) {
             RegionRequest.addRegion((String) request.get("to_add"));
@@ -63,22 +75,14 @@ public class MonThread extends Thread{
                     (String) request.get("represantant")
             );
         }
-        else if (request.get("name_request").equals("add_votant")){
+        else if (request.get("name_request").equals("add_electeur")){
             RegionRequest.addElecteurs();
         }
         else if (request.get("name_request").equals("make_vote")){
             ServerService.makeVote();
         }
-        else if (request.get("name_request").equals("resultat_region")){
-            List<Map<String,Object>> result = RegionRequest.selectVoteByRegion((Integer) request.get("id_region"));
-            byte [] data = ServerService.transformToByte(result);
-            packet.setData(data);
-            packet.setLength(data.length);
-            try {
-                socket.send(packet);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        else if (request.get("name_request").equals("drop_data_base")) {
+            ServerService.dropDatabase();
         }
         System.out.println(request.get("name_request"));
     }

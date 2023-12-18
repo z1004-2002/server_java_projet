@@ -1,4 +1,6 @@
-package org.abel;
+package org.abel.services;
+
+import org.abel.Connexion;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -44,12 +46,12 @@ public class RegionRequest {
         }
         return null;
     }
-    public static void addRepresantant(int id_region,int id_parti, String representant){
+    public static void addRepresantant(int id_region,int id_parti, String nom_representant){
         Connection connection = Connexion.connect();
         try {
             assert connection != null;
             Statement stm = connection.createStatement();
-            stm.executeUpdate("INSERT INTO region_parti(id_region,id_parti,nom_representant) VALUES ("+id_region+", "+id_parti+", '"+representant+"');");
+            stm.executeUpdate("INSERT INTO region_parti(id_region,id_parti,nom_representant) VALUES ("+id_region+", "+id_parti+", '"+nom_representant+"');");
             connection.close();
         }catch (SQLException s){
             s.printStackTrace();

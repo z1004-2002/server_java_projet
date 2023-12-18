@@ -1,4 +1,6 @@
-package org.abel;
+package org.abel.services;
+
+import org.abel.Connexion;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

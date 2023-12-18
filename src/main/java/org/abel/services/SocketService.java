@@ -1,4 +1,4 @@
-package org.abel;
+package org.abel.services;
 
 import java.net.DatagramSocket;
 import java.net.SocketException;
