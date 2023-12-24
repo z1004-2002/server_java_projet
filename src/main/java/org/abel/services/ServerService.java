@@ -46,13 +46,16 @@ public class ServerService {
         }
     }
     public static List<Map<String, Object>> resultSetToList(ResultSet resultSet) throws SQLException {
+
         List<Map<String, Object>> resultList = new ArrayList<>();
 
         ResultSetMetaData metaData = resultSet.getMetaData();
+
         int columnCount = metaData.getColumnCount();
 
         while (resultSet.next()) {
             Map<String, Object> row = new HashMap<>();
+
             for (int i = 1; i <= columnCount; i++) {
                 String columnName = metaData.getColumnName(i);
                 Object value = resultSet.getObject(i);
@@ -64,6 +67,17 @@ public class ServerService {
         return resultList;
     }
     public static byte [] transformToByte(List<Map<String, Object>> result){
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(result);
+            oos.flush();
+            return bos.toByteArray();
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static byte [] transformToByte(Map<String, Object> result){
         try {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(bos);

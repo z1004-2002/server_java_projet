@@ -7,6 +7,8 @@ import org.abel.services.ServerService;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -84,6 +86,25 @@ public class MonThread extends Thread{
         else if (request.get("name_request").equals("drop_data_base")) {
             ServerService.dropDatabase();
         }
-        System.out.println(request.get("name_request"));
+        else if (request.get("name_request").equals("login")) {
+            String username = (String) request.get("username");
+            String password = (String) request.get("password");
+            Map<String,Object> message = new HashMap<>();
+            if (username.equals("abel") && password.equals("1234")){
+                message.put("message","ok");
+            }else {
+                message.put("message","Erreur de nom d'utilisateur ou de mot de passe");
+            }
+            byte [] data = ServerService.transformToByte(message);
+            packet.setData(data);
+            packet.setLength(data.length);
+            try {
+                socket.send(packet);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        System.out.println(request.get("name_request")+" "+packet.getAddress().toString()+":"+packet.getPort());
     }
 }

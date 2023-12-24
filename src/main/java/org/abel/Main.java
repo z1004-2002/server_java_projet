@@ -9,6 +9,7 @@ import java.net.DatagramSocket;
 public class Main {
     public static void main(String[] args) {
         DatagramSocket socket = SocketService.createServerSocket(3000);
+        System.out.println("Votre serveur a démaré sans problème 🎉!");
         while(true){
             try{
                 byte []tmp = new byte[2048];
