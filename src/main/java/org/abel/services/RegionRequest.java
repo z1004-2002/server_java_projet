@@ -51,7 +51,14 @@ public class RegionRequest {
         try {
             assert connection != null;
             Statement stm = connection.createStatement();
-            stm.executeUpdate("INSERT INTO region_parti(id_region,id_parti,nom_representant) VALUES ("+id_region+", "+id_parti+", '"+nom_representant+"');");
+            ResultSet rs = stm.executeQuery("SELECT * FROM region_parti WHERE id_region="+id_region+" AND id_parti="+id_parti);
+            int n=0;
+            while (rs.next()) n++;
+            if (n==0) {
+                stm.executeUpdate("INSERT INTO region_parti(id_region,id_parti,nom_representant) VALUES (" + id_region + ", " + id_parti + ", '" + nom_representant + "');");
+            }else {
+                stm.executeUpdate("UPDATE region_parti SET nom_representant='" + nom_representant + "' WHERE id_region=" + id_region + " AND id_parti=" + id_parti);
+            }
             connection.close();
         }catch (SQLException s){
             s.printStackTrace();
