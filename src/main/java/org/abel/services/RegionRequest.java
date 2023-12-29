@@ -64,7 +64,6 @@ public class RegionRequest {
             s.printStackTrace();
         }
     }
-
     public static void addElecteurs(){
         List<Map<String,Object>> regions = RegionRequest.getAllRegion();
         assert regions != null;
