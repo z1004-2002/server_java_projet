@@ -20,17 +20,30 @@ public class ServerService {
             s.printStackTrace();
         }
     }
-    public static void makeVote(){
+    public static void makeVote()   {
         Connection connection = Connexion.connect();
         List<Map<String, Object>> regions =  RegionRequest.getAllRegion();
         assert regions != null;
+        assert connection != null;
         for (Map<String, Object> region:regions){
+            int electeurs = (Integer) region.get("electeurs");
+            int votants;
+            if (RandomNumberGenerator(0,1)==0){
+                votants = RandomNumberGenerator((electeurs/4),electeurs);
+            }else {
+                votants = electeurs;
+            }
+            try {
+                Statement stm = connection.createStatement();
+                stm.executeUpdate("UPDATE region SET votants = "+votants+" WHERE id_region = "+region.get("id_region"));
+            }catch (SQLException s){
+                s.printStackTrace();
+            }
             List<Map<String,Object>> partis = PartiRequest.getAllParti();
             assert partis != null;
-            List<Integer> votes = generateRandomSum(partis.size(), (Integer) region.get("electeurs"));
+            List<Integer> votes = generateRandomSum(partis.size(), votants);
             for(int i=0;i<partis.size();i++){
                 try {
-                    assert connection != null;
                     Statement stm = connection.createStatement();
                     stm.executeUpdate("UPDATE region_parti SET vote = "+votes.get(i)+" WHERE id_region = "+region.get("id_region")+" AND id_parti = "+partis.get(i).get("id_parti"));
                 }catch (SQLException s){
@@ -39,7 +52,6 @@ public class ServerService {
             }
         }
         try {
-            assert connection != null;
             connection.close();
         }catch (SQLException s){
             s.printStackTrace();
