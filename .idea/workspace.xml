@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01ff3e52-0852-4c1b-bb0e-664307b504e6" name="Changes" comment="100% but">
+    <list default="true" id="01ff3e52-0852-4c1b-bb0e-664307b504e6" name="Changes" comment="100%">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/abel/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/abel/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/abel/services/PartiRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/abel/services/PartiRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/abel/services/RegionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/abel/services/RegionRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/abel/services/ServerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/abel/services/ServerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/abel/services/SocketService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/abel/Connexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/abel/Connexion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,20 +42,20 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/client/Documents/mysql-connector-java-8.0.28.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2908046",
-    "settings.build.tools.auto.reload": "ALL",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/client/Documents/mysql-connector-java-8.0.28.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2908046&quot;,
+    &quot;settings.build.tools.auto.reload&quot;: &quot;ALL&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.abel.Main" />
@@ -171,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704803692218</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="100%">
+      <created>1704806768550</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1704806768550</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,6 +211,7 @@
     <MESSAGE value="first end, with test 100%" />
     <MESSAGE value="100% but we can include sqlite" />
     <MESSAGE value="100% but" />
-    <option name="LAST_COMMIT_MESSAGE" value="100% but" />
+    <MESSAGE value="100%" />
+    <option name="LAST_COMMIT_MESSAGE" value="100%" />
   </component>
 </project>

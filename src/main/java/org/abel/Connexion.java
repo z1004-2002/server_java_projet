@@ -11,7 +11,7 @@ public class Connexion {
             System.err.println("Impossible de charger le pilote JDBC : " + e.getMessage());
         }
         try{
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/e_vote","admin_e_vote","admin123");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/e_vote","root","");
         }catch (SQLException s){
             s.printStackTrace();
         }
