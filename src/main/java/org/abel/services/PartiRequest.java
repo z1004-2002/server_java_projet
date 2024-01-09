@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
-public class PartiRequest {
+public abstract class PartiRequest {
     public static void addParti(String nom){
         Connection connection = Connexion.connect();
         try {

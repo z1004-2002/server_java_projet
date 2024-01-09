@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class RegionRequest {
+public abstract class RegionRequest {
     public static void addRegion(String nom){
         Connection connection = Connexion.connect();
         try {

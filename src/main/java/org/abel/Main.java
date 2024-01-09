@@ -1,14 +1,18 @@
 package org.abel;
 
-import org.abel.services.SocketService;
-
 import java.io.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.SocketException;
 
 public class Main {
     public static void main(String[] args) {
-        DatagramSocket socket = SocketService.createServerSocket(3000);
+        DatagramSocket socket = null;
+        try{
+            socket= new DatagramSocket(3000);
+        }catch (SocketException e){
+            e.printStackTrace();
+        }
         System.out.println("Votre serveur a démaré sans problème 🎉!");
         while(true){
             try{
