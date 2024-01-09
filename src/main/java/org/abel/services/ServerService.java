@@ -12,7 +12,7 @@ public class ServerService {
         try {
             assert connection != null;
             Statement stm = connection.createStatement();
-            stm.executeUpdate("DELETE FROM region_parti");
+            stm.executeUpdate("DELETE FROM represantant");
             stm.executeUpdate("DELETE FROM parti");
             stm.executeUpdate("DELETE FROM region");
             connection.close();
@@ -42,12 +42,24 @@ public class ServerService {
             List<Map<String,Object>> partis = PartiRequest.getAllParti();
             assert partis != null;
             List<Integer> votes = generateRandomSum(partis.size(), votants);
-            for(int i=0;i<partis.size();i++){
+            int x = RandomNumberGenerator(0,1);
+            if (x == 0 && votants == electeurs){
                 try {
                     Statement stm = connection.createStatement();
-                    stm.executeUpdate("UPDATE region_parti SET vote = "+votes.get(i)+" WHERE id_region = "+region.get("id_region")+" AND id_parti = "+partis.get(i).get("id_parti"));
+                    stm.executeUpdate("UPDATE represantant SET vote = 0 WHERE id_region = "+region.get("id_region"));
+                    x = RandomNumberGenerator(1, partis.size());
+                    stm.executeUpdate("UPDATE represantant SET vote = "+votants+" WHERE id_region = "+region.get("id_region")+" AND id_parti = "+partis.get(x-1).get("id_parti"));
                 }catch (SQLException s){
                     s.printStackTrace();
+                }
+            }else {
+                for(int i=0;i<partis.size();i++){
+                    try {
+                        Statement stm = connection.createStatement();
+                        stm.executeUpdate("UPDATE represantant SET vote = "+votes.get(i)+" WHERE id_region = "+region.get("id_region")+" AND id_parti = "+partis.get(i).get("id_parti"));
+                    }catch (SQLException s){
+                        s.printStackTrace();
+                    }
                 }
             }
         }
